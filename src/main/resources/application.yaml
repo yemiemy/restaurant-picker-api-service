@@ -1,6 +1,19 @@
 spring:
-  application:
-    name: api-service
-
-server:
-  port: 8082
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: restaurant-service
+              uri: http://localhost:8082
+              predicates:
+                - Path=/restaurants/**
+              filters:
+                - PrefixPath=/api
+            - id: voting-service
+              uri: http://localhost:8081
+              predicates:
+                - Path=/vote-restaurants/**
+                - Method=POST
+              filters:
+                - PrefixPath=/api

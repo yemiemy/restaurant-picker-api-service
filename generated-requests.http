@@ -1,17 +1,5 @@
 ### Search Restaurants
-POST http://localhost:8082/api/v1/restaurants
-Content-Type: application/json
-
-{
-  "searchQuery": "sports bar",
-  "latitude": 51.509865,
-  "longitude": -0.118092,
-  "radiusMeters": 500.0,
-  "minPlaceRating": 4.0,
-  "desiredPriceLevels": ["PRICE_LEVEL_INEXPENSIVE", "PRICE_LEVEL_MODERATE"],
-  "requireOpenNow": true,
-  "rankPreference": "RELEVANCE"
-}
+GET http://localhost:8082/api/restaurants?searchQuery=pizza&latitude=51.5074&longitude=-0.1278&radiusMeters=200&minPlaceRating=4&desiredPriceLevels=PRICE_LEVEL_INEXPENSIVE&desiredPriceLevels=PRICE_LEVEL_MODERATE&requireOpenNow=true&rankPreference=RELEVANCE
 
 <> 2025-09-28T100612.200.json
 <> 2025-09-28T100456.404.json
@@ -19,14 +7,14 @@ Content-Type: application/json
 
 
 ### GET request to get a particular restaurant by id
-GET http://localhost:8082/api/v1/restaurants/ChIJFZfF1coEdkgRpiMmoPwtmCA
+GET http://localhost:8080/restaurants/ChIJFZfF1coEdkgRpiMmoPwtmCA
 
 <> 2025-09-28T100640.200.json
 <> 2025-09-28T100623.404.json
 
 
 ### Vote - Normal path
-POST http://localhost:8082/api/v1/vote-restaurants
+POST http://localhost:8080/vote-restaurants
 Content-Type: application/json
 
 [
@@ -48,25 +36,10 @@ Content-Type: application/json
 ]
 
 ### Empty list path
-POST http://localhost:8082/api/v1/vote-restaurants
+POST http://localhost:8080/vote-restaurants
 Content-Type: application/json
 
-[
-  {
-    "numberOfVotes": 5,
-    "rating": 2
-  },
-  {
-    "restaurantId": "DEF",
-    "numberOfVotes": 4,
-    "rating": 4.6
-  },
-  {
-    "restaurantId": "GHI",
-    "numberOfVotes": 8,
-    "rating": 4.3
-  }
-]
+[]
 
 <> 2025-09-27T002657.500.json
 <> 2025-09-27T002147.200.json
